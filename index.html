@@ -39,7 +39,7 @@
         --primary: #66DCDC;
         --primary-hover: #45b7b7;
         
-        --card-bg: rgba(255, 255, 255, 0.75); /* Increased opacity for legibility */
+        --card-bg: rgba(255, 255, 255, 0.75); 
         --card-border: rgba(255, 255, 255, 0.8);
         --input-bg: rgba(255, 255, 255, 0.6);
       }
@@ -51,11 +51,12 @@
 
       body {
         font-family: var(--font-main);
-        /* font-size inherited from html */
         background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-mid) 50%, var(--bg-gradient-end) 100%);
         background-attachment: fixed;
         color: var(--text-main);
         transition: background 0.4s ease, color 0.4s ease, font-family 0.3s ease;
+        margin: 0;
+        min-height: 100vh;
       }
       
       /* RTL Font Override */
@@ -73,7 +74,7 @@
         --text-secondary: #cbd5e1;  /* Slate 300 */
         --text-muted: #64748b;      /* Slate 500 */
         
-        --card-bg: rgba(30, 41, 59, 0.85); /* Darker, more opaque surface */
+        --card-bg: rgba(30, 41, 59, 0.85);
         --card-border: rgba(255, 255, 255, 0.15);
         --input-bg: rgba(15, 23, 42, 0.6);
       }
@@ -84,11 +85,11 @@
         --bg-gradient-mid: #f3e5d0;
         --bg-gradient-end: #e6d5c3;
         
-        --text-main: #422006;       /* Deep Brown */
-        --text-secondary: #78350f;  /* Medium Brown */
-        --text-muted: #a68a6d;      /* Light Brown */
+        --text-main: #422006;       
+        --text-secondary: #78350f;  
+        --text-muted: #a68a6d;      
         
-        --primary: #d97706;         /* Warm Amber/Orange */
+        --primary: #d97706;         
            
         --card-bg: rgba(255, 253, 245, 0.85);
         --card-border: rgba(120, 53, 15, 0.15);
@@ -109,12 +110,6 @@
          border-color: var(--card-border) !important;
       }
 
-      /* Focus Rings */
-      *:focus-visible {
-        outline: 2px solid var(--primary);
-        outline-offset: 2px;
-      }
-
       /* Custom Scrollbar */
       ::-webkit-scrollbar {
         width: 8px;
@@ -130,8 +125,7 @@
       ::-webkit-scrollbar-thumb:hover {
         background: var(--primary-hover);
       }
-
-      /* Utility to hide scrollbar but keep functionality */
+      
       .scrollbar-hide::-webkit-scrollbar {
           display: none;
       }
@@ -143,23 +137,23 @@
   <script type="importmap">
 {
   "imports": {
-    "react/": "https://esm.sh/react@^19.2.3/",
     "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "framer-motion": "https://esm.sh/framer-motion@^12.23.26",
     "@google/genai": "https://esm.sh/@google/genai@^1.33.0",
     "lucide-react": "https://esm.sh/lucide-react@^0.561.0",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "firebase/": "https://esm.sh/firebase@^12.6.0/",
     "react-router-dom": "https://esm.sh/react-router-dom@^7.10.1",
     "recharts": "https://esm.sh/recharts@^3.5.1",
-    "framer-motion": "https://esm.sh/framer-motion@^12.0.0",
-    "firebase/app": "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js",
-    "firebase/auth": "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js",
-    "firebase/firestore": "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js",
-    "firebase/": "https://esm.sh/firebase@^12.6.0/"
+    "vite": "https://esm.sh/vite@^7.2.7",
+    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.2"
   }
 }
 </script>
 </head>
   <body>
     <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
   </body>
 </html>
