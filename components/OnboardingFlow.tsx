@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { OnboardingQuestion, UserContext } from '../types';
-import { STYLES, Mascot, ANIMATIONS } from '../constants';
+import { STYLES, ANIMATIONS } from '../constants';
 import { ChevronRight, SkipForward, Check } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -66,6 +66,13 @@ const QUESTIONS: OnboardingQuestion[] = [
       "Tired and draining fast 🪫",
       "Exhausted / Struggling 💤"
     ]
+  },
+  {
+    id: 'hobbies',
+    question: "What are your favorite hobbies?",
+    type: 'text',
+    placeholder: 'e.g., Painting, Gaming, Basketball...',
+    description: "I'll schedule time for these so you don't burn out."
   },
   {
     id: 'motivationStyle',
@@ -171,9 +178,35 @@ const OnboardingFlow: React.FC<OnboardingFlowProps> = ({ onComplete }) => {
           />
         </div>
 
-        {/* Mascot */}
-        <div className="flex justify-center mb-6 mt-4">
-            <Mascot mood="happy" className="w-16 h-16 md:w-20 md:h-20" />
+        {/* Welcoming Waving Character */}
+        <div className="flex justify-center mb-6 mt-6">
+            <motion.img 
+                src="https://i.postimg.cc/hjmKDn4M/generated-image-d828c5ef-d84b-4084-952e-f7a77a5d580c-(1).png"
+                alt="Talwit Waving"
+                className="w-32 h-32 md:w-40 md:h-40 object-contain drop-shadow-md"
+                initial={{ scale: 0, rotate: -15, opacity: 0 }}
+                animate={{ 
+                    scale: 1, 
+                    rotate: [0, 10, -10, 10, 0], // Waving effect
+                    opacity: 1,
+                    y: [0, -8, 0] // Floating effect
+                }}
+                transition={{ 
+                    scale: { type: "spring", stiffness: 200, damping: 15 },
+                    opacity: { duration: 0.5 },
+                    rotate: { 
+                        repeat: Infinity, 
+                        repeatDelay: 2, 
+                        duration: 2.5, 
+                        ease: "easeInOut" 
+                    },
+                    y: {
+                        repeat: Infinity,
+                        duration: 4,
+                        ease: "easeInOut"
+                    }
+                }}
+            />
         </div>
 
         {/* Question Content (AnimatePresence) */}

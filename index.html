@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -5,27 +6,138 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Talwit – Study & Wellness Companion</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-      body {
-        font-family: 'Outfit', sans-serif;
-        background: linear-gradient(135deg, #e0f7fa 0%, #e8f5e9 50%, #f3e5f5 100%);
-        background-attachment: fixed;
-        color: #1f2937;
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              primary: '#66DCDC',
+            }
+          }
+        }
       }
-      /* Custom Scrollbar for Glass UI */
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --base-font-size: 16px;
+        --font-main: 'Outfit', sans-serif;
+        
+        /* --- SEMANTIC COLOR SYSTEM --- */
+        
+        /* 1. Light Theme (Default) */
+        --bg-gradient-start: #e0f7fa;
+        --bg-gradient-mid: #e8f5e9;
+        --bg-gradient-end: #f3e5f5;
+        
+        --text-main: #111827;       /* Gray 900 - High Contrast */
+        --text-secondary: #4b5563;  /* Gray 600 - Readable helper text */
+        --text-muted: #9ca3af;      /* Gray 400 - Disabled/Placeholder */
+        --text-on-primary: #ffffff;
+        
+        --primary: #66DCDC;
+        --primary-hover: #45b7b7;
+        
+        --card-bg: rgba(255, 255, 255, 0.75); /* Increased opacity for legibility */
+        --card-border: rgba(255, 255, 255, 0.8);
+        --input-bg: rgba(255, 255, 255, 0.6);
+      }
+
+      html {
+        font-size: var(--base-font-size);
+        transition: font-size 0.3s ease;
+      }
+
+      body {
+        font-family: var(--font-main);
+        /* font-size inherited from html */
+        background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-mid) 50%, var(--bg-gradient-end) 100%);
+        background-attachment: fixed;
+        color: var(--text-main);
+        transition: background 0.4s ease, color 0.4s ease, font-family 0.3s ease;
+      }
+      
+      /* RTL Font Override */
+      html[dir="rtl"] body {
+        --font-main: 'Tajawal', sans-serif;
+      }
+
+      /* 2. Dark Theme Overrides */
+      body.dark-theme {
+        --bg-gradient-start: #0f172a;
+        --bg-gradient-mid: #1e293b;
+        --bg-gradient-end: #020617;
+        
+        --text-main: #f8fafc;       /* Slate 50 */
+        --text-secondary: #cbd5e1;  /* Slate 300 */
+        --text-muted: #64748b;      /* Slate 500 */
+        
+        --card-bg: rgba(30, 41, 59, 0.85); /* Darker, more opaque surface */
+        --card-border: rgba(255, 255, 255, 0.15);
+        --input-bg: rgba(15, 23, 42, 0.6);
+      }
+
+      /* 3. Calm Theme Overrides (Warm/Sepia) */
+      body.calm-theme {
+        --bg-gradient-start: #fffbf0;
+        --bg-gradient-mid: #f3e5d0;
+        --bg-gradient-end: #e6d5c3;
+        
+        --text-main: #422006;       /* Deep Brown */
+        --text-secondary: #78350f;  /* Medium Brown */
+        --text-muted: #a68a6d;      /* Light Brown */
+        
+        --primary: #d97706;         /* Warm Amber/Orange */
+           
+        --card-bg: rgba(255, 253, 245, 0.85);
+        --card-border: rgba(120, 53, 15, 0.15);
+        --input-bg: rgba(255, 255, 255, 0.5);
+      }
+
+      /* Global Utility Classes using Variables */
+      .text-main { color: var(--text-main) !important; }
+      .text-secondary { color: var(--text-secondary) !important; }
+      .text-muted { color: var(--text-muted) !important; }
+      
+      .backdrop-blur-xl {
+        background-color: var(--card-bg) !important;
+        border-color: var(--card-border) !important;
+      }
+      .backdrop-blur-md {
+         background-color: var(--input-bg) !important;
+         border-color: var(--card-border) !important;
+      }
+
+      /* Focus Rings */
+      *:focus-visible {
+        outline: 2px solid var(--primary);
+        outline-offset: 2px;
+      }
+
+      /* Custom Scrollbar */
       ::-webkit-scrollbar {
         width: 8px;
+        height: 8px;
       }
       ::-webkit-scrollbar-track {
-        background: rgba(255, 255, 255, 0.1);
+        background: rgba(0, 0, 0, 0.05);
       }
       ::-webkit-scrollbar-thumb {
-        background: rgba(102, 220, 220, 0.5);
+        background: var(--primary);
         border-radius: 4px;
       }
       ::-webkit-scrollbar-thumb:hover {
-        background: rgba(102, 220, 220, 0.8);
+        background: var(--primary-hover);
+      }
+
+      /* Utility to hide scrollbar but keep functionality */
+      .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+      }
+      .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
       }
     </style>
   <script type="importmap">
@@ -38,7 +150,11 @@
     "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
     "react-router-dom": "https://esm.sh/react-router-dom@^7.10.1",
     "recharts": "https://esm.sh/recharts@^3.5.1",
-    "framer-motion": "https://esm.sh/framer-motion@^12.0.0"
+    "framer-motion": "https://esm.sh/framer-motion@^12.0.0",
+    "firebase/app": "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js",
+    "firebase/auth": "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js",
+    "firebase/firestore": "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js",
+    "firebase/": "https://esm.sh/firebase@^12.6.0/"
   }
 }
 </script>
