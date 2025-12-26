@@ -21,13 +21,13 @@ import { ChatMessage, AgendaItem, UserContext } from "../types";
 
 // --- Configuration provided by user ---
 const firebaseConfig = {
-  apiKey: "AIzaSyAqwuPe4uAIiGORR2OxnHzInVRUtP4KIN8",
-  authDomain: "talwit-f6560.firebaseapp.com",
-  projectId: "talwit-f6560",
-  storageBucket: "talwit-f6560.firebasestorage.app",
-  messagingSenderId: "855464070502",
-  appId: "1:855464070502:web:1bc73f239aef3eddd98ca7",
-  measurementId: "G-M1LTFEMPM5"
+    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+    appId: import.meta.env.VITE_FIREBASE_APP_ID,
+    measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
 // --- Initialize Firebase ---
